@@ -1,7 +1,14 @@
 #%% Packages
-from langchain_community.document_loaders import TextLoader, YoutubeLoader, WikipediaLoader, PyPDFLoader, DirectoryLoader, UnstructuredFileLoader, Docx2txtLoader
+from langchain_community.document_loaders import (
+    TextLoader,
+    YoutubeLoader,
+    WikipediaLoader,
+    PyPDFLoader,
+    DirectoryLoader,
+    Docx2txtLoader
+)
 
-# from langchain.schema import Document
+from langchain_unstructured import UnstructuredLoader
 from langchain_core.documents import Document
 
 import os
@@ -62,7 +69,7 @@ file_paths
 docs_unstructured = []
 for file_path in file_paths[:2]:
     print(file_path)
-    loader = UnstructuredFileLoader(file_path)
+    loader = UnstructuredLoader(file_path)
     docs_unstructured.append(loader.load())
 
 # %%

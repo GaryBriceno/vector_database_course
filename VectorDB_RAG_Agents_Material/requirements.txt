@@ -4,6 +4,7 @@ langchain-openai
 langchain-openai
 langchain-community
 langchain-experimental
+langchain-unstructured
 ipykernel
 python-dotenv
 pytube
@@ -12,6 +13,8 @@ wikipedia
 pypdf
 docx2txt
 unstructured
+unstructured[md]
+unstructured[pdf]
 sentence-transformers
 chromadb
 crewai
