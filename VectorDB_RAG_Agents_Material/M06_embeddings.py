@@ -1,18 +1,14 @@
 #%% packages
 
-# from langchain.document_loaders import Docx2txtLoader
 from langchain_community.document_loaders import Docx2txtLoader
 
-from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain_openai.embeddings import OpenAIEmbeddings
 from transformers import AutoTokenizer
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv(usecwd=True))
 #%% Embeddings Model
-# embeddings_model = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 # %% OpenAI embeddings
 # https://platform.openai.com/docs/guides/embeddings/embedding-models
@@ -20,7 +16,7 @@ embeddings_model = OpenAIEmbeddings(model='text-embedding-3-small')
 
 
 # %%
-tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-minilm-l6-v2')
+tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-minilm-l6-v2') # type: ignore
 
 def tokens(text: str) -> int:
     return len(tokenizer.encode(text))

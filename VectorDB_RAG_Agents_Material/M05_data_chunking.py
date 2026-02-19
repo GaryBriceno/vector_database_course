@@ -1,5 +1,5 @@
 #%% packages
-from langchain_core.document_loaders import Docx2txtLoader
+from langchain_community.document_loaders import Docx2txtLoader
 
 # from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
 from langchain_text_splitters import (
@@ -55,7 +55,8 @@ plt.bar(range(len(chunks)), chunks)
 plt.title('Number of Tokens in each chunk')
 plt.show()
 # %% Semantic Text Splitter
-semantic_splitter = SemanticChunker(embeddings=OpenAIEmbeddings(), breakpoint_threshold_type="gradient")
+semantic_splitter = SemanticChunker(embeddings=OpenAIEmbeddings(),
+                                    breakpoint_threshold_type="gradient")
 texts = semantic_splitter.split_documents(pages)
 
 # %%
