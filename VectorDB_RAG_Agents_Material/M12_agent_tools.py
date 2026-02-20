@@ -52,13 +52,13 @@ create_questions = Task(
 #%%
 create_answers = Task(
     agent=answer_creator,
-    description=("Create {number} answers for the multiple choice questions"),
+    description="Create {number} answers for the multiple choice questions",
     expected_output = "{number} answers created for the multiple choice questions",
 )
 #%%
 create_qa = Task(
     agent=qa_compiler,
-    description=("create a question and answer set for a multiple choice test"),
+    description="create a question and answer set for a multiple choice test",
     expected_output = ("Question and corresponding answers, "
                        "Example: Question: 'What is the capital of France?' Possible Answers: 'A: Paris', 'B: London', 'C: Berlin', 'D: Madrid'; Rationale: Correct Answer A because ..., Incorrect Answer B because ...")
 )
