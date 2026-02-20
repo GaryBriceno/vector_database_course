@@ -25,7 +25,7 @@ llm = ChatGroq(model=MODEL, temperature=0)
 def rag_chat(user_query: str, k: int = 5):
     retrieved_docs = db_client.similarity_search(query=user_query, k=k)
     retrieved_docs_text = [doc.page_content for doc in retrieved_docs]
-    retrieved_docs_text
+
     retrieved_docs_text_str = "\n".join(retrieved_docs_text)
 
     query_and_context = (
@@ -53,7 +53,7 @@ rag_chat(user_query)
 def rag_chat_add_style_language(user_query: str, k: int = 5, style: str = "formal", language: str = "english"):
     retrieved_docs = db_client.similarity_search(query=user_query, k=k)
     retrieved_docs_text = [doc.page_content for doc in retrieved_docs]
-    retrieved_docs_text
+
     retrieved_docs_text_str = "\n".join(retrieved_docs_text)
 
     query_and_context = (
