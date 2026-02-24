@@ -1,11 +1,10 @@
+# CrewAI + Ollama
+# To interact with local LLM
+
 from crewai import Agent, Task, Crew, Process, LLM
 
-# LLM local via Ollama
-local_llm = LLM(
-    model="ollama/llama3.2",
-    base_url="http://localhost:11434",
-    temperature=0.2
-)
+from demo_crew_ai.utils.llms_models import local_llm
+
 
 agent = Agent(
     role="Local Assistant",
@@ -28,5 +27,3 @@ crew = Crew(
 )
 
 result = crew.kickoff()
-print("\n=== RESULT ===\n")
-print(result)

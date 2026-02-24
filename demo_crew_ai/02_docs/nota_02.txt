@@ -1,0 +1,1 @@
+Ollama run LLM models locally using the URL http://localhost:11434
