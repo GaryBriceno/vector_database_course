@@ -1,1 +1,4 @@
 litellm
+feedparser
+requests
+beautifulsoup4
