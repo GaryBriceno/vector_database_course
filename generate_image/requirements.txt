@@ -14,3 +14,4 @@ crewai
 pillow
 tqdm
 numpy
+litellm
