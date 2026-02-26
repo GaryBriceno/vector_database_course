@@ -1,6 +1,7 @@
 # crew_run.py
 from crewai import Agent, Task, Crew
-from generate_image.generate_image import generate_visual
+from generate_image.build_image import generate_visual
+from llms_utils.ollama_llm import local_ollama_llm
 
 visual_agent = Agent(
     role="Visual Generator",
@@ -10,6 +11,7 @@ visual_agent = Agent(
         "y generar imágenes localmente usando un pipeline diffusion."
     ),
     tools=[generate_visual],
+    llm=local_ollama_llm,
     verbose=True,
 )
 

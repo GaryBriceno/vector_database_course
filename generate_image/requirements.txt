@@ -10,6 +10,7 @@ accelerate>=0.27
 safetensors>=0.4
 
 # Utils
+crewai
 pillow
 tqdm
 numpy
