@@ -18,7 +18,7 @@ OUT_DIR = Path(os.getenv("IMG_OUT_DIR", "./generated_images"))
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 DEVICE = "mps"  # Apple Silicon
-DTYPE = torch.float16
+DTYPE = torch.float32
 
 # ---- Lazy-loaded pipeline (para no cargar el modelo en import) ----
 _PIPE: Optional[DiffusionPipeline] = None
@@ -76,7 +76,7 @@ def generate_image(
     """
     Genera una imagen offline y devuelve el path del PNG.
     """
-    pipe = get_pipe(use_lcm=True)
+    pipe = get_pipe(use_lcm=False)
 
     if seed is None:
         seed = int.from_bytes(uuid.uuid4().bytes[:4], "big")

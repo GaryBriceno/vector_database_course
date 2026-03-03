@@ -1,5 +1,7 @@
 #%% Packages
 import os
+import requests
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
@@ -7,6 +9,43 @@ from langchain_community.document_loaders import TextLoader
 from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 from langchain_community.document_loaders import GutenbergLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+
+#%% To work with URLs
+CA_BUNDLE = os.path.expanduser("~/certs/ca-bundle.pem")
+os.environ["SSL_CERT_FILE"] = CA_BUNDLE
+os.environ["REQUESTS_CA_BUNDLE"] = CA_BUNDLE
+
+#%% Process data
+def process_data(url: str, book_title: str) -> list[Document]:
+    # --- descarga robusta (CA corporativo + User-Agent) ---
+    ca_bundle = os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE")
+    if not ca_bundle:
+        raise RuntimeError("No CA bundle set. Define REQUESTS_CA_BUNDLE or SSL_CERT_FILE.")
+
+    headers = {"User-Agent": "Mozilla/5.0"}  # Gutenberg a veces lo exige
+    r = requests.get(url, headers=headers, timeout=30, verify=ca_bundle)
+    r.raise_for_status()
+
+    # Normalmente es UTF-8; si viene raro, requests intenta detectar, pero forzamos fallback
+    text = r.text
+
+    # --- crea Document y split ---
+    data = [Document(page_content=text, metadata={"source": url, "book_title": book_title})]
+
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=100,
+        add_start_index=True,
+    )
+    chunks = text_splitter.split_documents(data)
+
+    # metadata book_title ya está, pero lo garantizamos
+    for chunk in chunks:
+        chunk.metadata["book_title"] = book_title
+
+    return chunks
 
 #%% load the text and split it
 def process_data(url: str, book_title: str) -> list[Document]:

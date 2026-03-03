@@ -40,8 +40,9 @@ embeddings = embeddings_model.embed_documents(texts)
 # %% for each chunk, calculate the embeddings
 len(embeddings)
 # %% get the length of vectors
-len(embeddings[0])
+print(f"length of embeddings {len(embeddings[0])}")
 
+print(embeddings[0])
 
 
 

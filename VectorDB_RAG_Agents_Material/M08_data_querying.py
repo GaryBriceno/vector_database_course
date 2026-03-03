@@ -1,14 +1,13 @@
 
 #%% Packages
-# from langchain.vectorstores import Chroma
-from langchain_core.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from pprint import pprint
 
 #%% Embeddings Model
 embeddings_model = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-
+print(embeddings_model)
 
 #%% connect to the database
 persistent_db_path = "db"
