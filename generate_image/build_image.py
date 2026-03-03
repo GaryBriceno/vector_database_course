@@ -46,6 +46,8 @@ def get_pipe(use_lcm: bool = True) -> DiffusionPipeline:
         MODEL_ID,
         torch_dtype=DTYPE,
         use_safetensors=True,
+        safety_checker=None,
+        requires_safety_checker=False
     )
 
     pipe.to(DEVICE)
@@ -69,8 +71,8 @@ def generate_image(
     negative_prompt: str = "blurry, low quality, watermark, text, logo",
     width: int = 1024,
     height: int = 1024,
-    steps: int = 6,              # 4-8 (rápido). Sube a 20 si quieres más calidad
-    guidance_scale: float = 1.2, # bajo para LCM (1.0–2.0)
+    steps: int = 8,              # 4-8 (rápido). Sube a 20 si quieres más calidad
+    guidance_scale: float = 6.0, # bajo para LCM (1.0–2.0)
     seed: Optional[int] = None,
 ) -> str:
     """
