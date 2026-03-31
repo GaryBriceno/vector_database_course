@@ -26,7 +26,7 @@ for i, c in enumerate(chunks):
 import chromadb
 
 # 1) Cliente local persistente
-client = chromadb.PersistentClient(path="./chroma_data")
+client = chromadb.PersistentClient(path="platohedro.db")
 
 # 2) Crear o recuperar colección
 collection = client.get_or_create_collection(name="demo_chunking")

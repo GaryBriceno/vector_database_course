@@ -1,6 +1,6 @@
 import chromadb
 
-client = chromadb.PersistentClient(path="chroma_data")
+client = chromadb.PersistentClient(path="platohedro.db")
 
 collection = client.get_or_create_collection(name="articulos")
 
@@ -12,9 +12,9 @@ collection.add(
         "FastAPI para microservicios",
     ],
     metadatas=[
-        {"tema": "vectordb", "nivel": "basico"},
-        {"tema": "python", "nivel": "basico"},
-        {"tema": "fastapi", "nivel": "intermedio"},
+        {"tema": "vectordb", "nivel": "basico", "anio": 2000},
+        {"tema": "python", "nivel": "basico", "anio": 2001},
+        {"tema": "fastapi", "nivel": "intermedio", "anio": 2002},
     ]
 )
 

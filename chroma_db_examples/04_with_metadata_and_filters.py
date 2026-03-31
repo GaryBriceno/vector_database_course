@@ -1,6 +1,6 @@
 import chromadb
 
-client = chromadb.PersistentClient(path="chroma_data")
+client = chromadb.PersistentClient(path="platohedro.db")
 
 collection = client.get_or_create_collection(name="articulos")
 

@@ -11,7 +11,7 @@ embedding_fn = OpenAIEmbeddingFunction(
     model_name="text-embedding-3-small",
 )
 
-client = chromadb.PersistentClient(path=os.getenv('CHROMADB_DB_EMBEDDINGS_PATH'))
+client = chromadb.PersistentClient(path="platohedro.db")
 
 collection = client.get_or_create_collection(
     name="docs_openai",

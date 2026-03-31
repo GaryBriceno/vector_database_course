@@ -11,7 +11,8 @@ print(embeddings_model)
 
 #%% connect to the database
 persistent_db_path = "db"
-db_client = Chroma(persist_directory=persistent_db_path, embedding_function=embeddings_model)
+db_client = Chroma(persist_directory=persistent_db_path,
+                   embedding_function=embeddings_model)
 
 # %% get all objects
 res = db_client.get()
